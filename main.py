@@ -51,7 +51,7 @@ if __name__ == "__main__":
         for second in dict_info:
 
             f.write("{}: {}, {}\n".format(second, dict_info[second][1],
-                                        dict_info[second][0]))
+                                          dict_info[second][0]))
 
         f.close()
 
