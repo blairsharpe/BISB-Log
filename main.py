@@ -1,5 +1,6 @@
 from request import Request
 
+
 if __name__ == "__main__":
 
     dict_info = {}
@@ -15,6 +16,7 @@ if __name__ == "__main__":
         start_time = request_obj.time()
         expire_time = start_time + 120
         pin = request_obj.pin()
+        dict_info[request_obj.time()][0] += request_obj.bytes()
 
         for line in log_file:
 
@@ -25,7 +27,7 @@ if __name__ == "__main__":
                 # Add the bytes for that second
                 dict_info[request_obj.time()][0] += request_obj.bytes()
 
-                current_time = int(request_obj.time())
+                current_time = request_obj.time()
 
                 if current_time > expire_time or pin != request_obj.pin():
 
@@ -33,6 +35,7 @@ if __name__ == "__main__":
                         expire_time = 3600
 
                     for second in range(start_time, expire_time):
+
                         dict_info[second][1] += 1
 
                     # Update everything
@@ -43,7 +46,6 @@ if __name__ == "__main__":
                 else:
 
                     expire_time = current_time + 120
-
         f = open("Output.txt", "w")
 
         for second in dict_info:

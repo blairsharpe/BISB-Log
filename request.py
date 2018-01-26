@@ -4,9 +4,6 @@ import datetime
 
 class Request:
 
-    MISSING_PIN = ""
-    ZERO_BYTES = -1
-
     def __init__(self, line):
 
         self.request = tuple(line.split(','))
@@ -38,7 +35,7 @@ class Request:
             :rtype  : int
             :return : Number of bytes from the request
             """
-        if self.request[3] == self.ZERO_BYTES:
+        if int(self.request[3]) < 0:
 
             return 0
 
@@ -56,10 +53,9 @@ class Request:
             :return : True if valid, False otherwise
             """
 
-        if self.pin() != self.MISSING_PIN:
+        if self.pin() != "" or self.pin() == " ":
 
             return True
-
         else:
 
             return False
