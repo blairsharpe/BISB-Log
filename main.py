@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
                 if current_time > expire_time or pin != request_obj.pin():
 
-                    if expire_time > 3599:
+                    if expire_time > 3600:
                         expire_time = 3600
 
                     for second in range(start_time, expire_time):
@@ -44,10 +44,14 @@ if __name__ == "__main__":
 
                     expire_time = current_time + 120
 
+        f = open("Output.txt", "w")
+
         for second in dict_info:
 
-            print("{}: {}, {}".format(second, dict_info[second][1], dict_info[
-                second][0]))
+            f.write("{}: {}, {}\n".format(second, dict_info[second][1],
+                                        dict_info[second][0]))
+
+        f.close()
 
 
 
